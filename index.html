@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dr. Paulo Silva — Advocacia Tributária</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold: #B8973A;
+      --gold-light: #D4AF5A;
+      --dark: #0D0D0D;
+      --dark2: #1A1A1A;
+      --text: #E8E8E8;
+      --text-muted: #A0A0A0;
+      --white: #FFFFFF;
+      --bg: #F7F5F0;
+      --bg2: #EEECE6;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark);
+      background: var(--bg);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, #0D0D0D 60%, #1c1810 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 24px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(184,151,58,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(90deg, rgba(184,151,58,0.04) 0px, rgba(184,151,58,0.04) 1px, transparent 1px, transparent 80px),
+        repeating-linear-gradient(0deg, rgba(184,151,58,0.04) 0px, rgba(184,151,58,0.04) 1px, transparent 1px, transparent 80px);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 6px 20px;
+      border-radius: 2px;
+      margin-bottom: 32px;
+      position: relative;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 8vw, 5rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero-divider {
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 24px auto;
+    }
+    .hero-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 20px;
+      position: relative;
+      padding: 0 12px;
+    }
+    .hero-desc {
+      font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+      color: var(--text);
+      max-width: 640px;
+      line-height: 1.7;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .hero-location {
+      font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+      color: var(--text-muted);
+      margin-bottom: 48px;
+      position: relative;
+      padding: 0 12px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gold);
+      color: var(--dark);
+      font-weight: 700;
+      font-size: clamp(0.85rem, 3vw, 0.95rem);
+      letter-spacing: 0.5px;
+      padding: 16px 36px;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+      border: none;
+      cursor: pointer;
+      justify-content: center;
+    }
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(184,151,58,0.35);
+    }
+    .btn-primary svg { flex-shrink: 0; }
+
+    /* ── INTRO ── */
+    .intro {
+      background: var(--dark);
+      padding: 56px 24px;
+      text-align: center;
+    }
+    .intro p {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 3vw, 1.45rem);
+      color: var(--gold-light);
+      font-style: italic;
+      max-width: 760px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── SOBRE ── */
+    .sobre {
+      background: var(--bg);
+      padding: 100px 24px;
+    }
+    .container { max-width: 1060px; margin: 0 auto; }
+    .sobre-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .sobre-img-wrap { position: relative; }
+    .sobre-img-wrap::before {
+      content: '';
+      position: absolute;
+      top: -16px; left: -16px; right: 16px; bottom: 16px;
+      border: 2px solid var(--gold);
+      border-radius: 4px;
+      z-index: 0;
+    }
+    .sobre-img-wrap img {
+      width: 100%;
+      border-radius: 4px;
+      display: block;
+      position: relative;
+      z-index: 1;
+      filter: grayscale(15%);
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.2;
+      margin-bottom: 28px;
+    }
+    .section-title .accent { color: var(--gold); }
+    .sobre-divider {
+      width: 48px;
+      height: 3px;
+      background: var(--gold);
+      margin-bottom: 28px;
+      border-radius: 2px;
+    }
+    .sobre-text p {
+      color: #4a4a4a;
+      line-height: 1.85;
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+      margin-bottom: 12px;
+    }
+    .oab-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--dark);
+      color: var(--gold);
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-top: 8px;
+    }
+
+    /* ── ÁREAS ── */
+    .areas {
+      background: var(--dark);
+      padding: 100px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .areas::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 100% 50%, rgba(184,151,58,0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .areas-header { text-align: center; margin-bottom: 64px; }
+    .areas-header .section-title { color: var(--white); }
+    .areas-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .area-card {
+      background: var(--dark2);
+      border: 1px solid rgba(184,151,58,0.2);
+      border-radius: 6px;
+      padding: 44px 36px;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .area-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--gold);
+      transition: height 0.4s ease;
+    }
+    .area-card:hover {
+      border-color: rgba(184,151,58,0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+    }
+    .area-card:hover::before { height: 100%; }
+    .area-icon { font-size: 2.2rem; margin-bottom: 20px; display: block; }
+    .area-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      color: var(--gold-light);
+      margin-bottom: 16px;
+    }
+    .area-card p { color: var(--text-muted); line-height: 1.8; font-size: 0.95rem; }
+    .area-list { list-style: none; margin-top: 20px; }
+    .area-list li {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .area-list li::before { content: '—'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+
+    /* ── DIFERENCIAIS ── */
+    .diferenciais { background: var(--bg2); padding: 100px 24px; }
+    .diferenciais-header { text-align: center; margin-bottom: 64px; }
+    .diferenciais-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .diferencial-card {
+      background: var(--white);
+      border-radius: 6px;
+      padding: 40px 28px;
+      text-align: center;
+      border-bottom: 3px solid transparent;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+    .diferencial-card:hover {
+      border-bottom-color: var(--gold);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      transform: translateY(-4px);
+    }
+    .diferencial-icon { font-size: 2rem; margin-bottom: 16px; display: block; }
+    .diferencial-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+    .diferencial-card p { font-size: 0.88rem; color: #666; line-height: 1.7; }
+
+    /* ── CONTATO ── */
+    .contato {
+      background: linear-gradient(135deg, #0D0D0D 0%, #1c1810 100%);
+      padding: 100px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .contato::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(184,151,58,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .contato-inner { position: relative; max-width: 680px; margin: 0 auto; }
+    .contato h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .contato h2 span { color: var(--gold); }
+    .contato p { color: var(--text-muted); font-size: clamp(0.9rem, 2.5vw, 1rem); line-height: 1.8; margin-bottom: 12px; }
+    .contato-divider { width: 60px; height: 2px; background: var(--gold); margin: 28px auto; }
+    .contato-info {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin: 36px 0;
+    }
+    .contato-info-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-muted);
+      font-size: clamp(0.82rem, 2.5vw, 0.9rem);
+    }
+    .contato-info-item span:first-child { color: var(--gold); font-size: 1.1rem; }
+
+    /* ── RODAPÉ ── */
+    .footer {
+      background: #080808;
+      padding: 28px 24px;
+      text-align: center;
+      border-top: 1px solid rgba(184,151,58,0.2);
+    }
+    .footer p { color: #555; font-size: clamp(0.72rem, 2vw, 0.8rem); line-height: 1.6; }
+    .footer strong { color: var(--gold); }
+
+    /* ── RESPONSIVO ── */
+    @media (max-width: 768px) {
+      .sobre-inner { grid-template-columns: 1fr; gap: 48px; }
+      .sobre-img-wrap { max-width: 300px; margin: 0 auto; }
+      .areas-grid { grid-template-columns: 1fr; }
+      .diferenciais-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+      .contato-info { flex-direction: column; align-items: center; gap: 16px; }
+      .sobre { padding: 60px 20px; }
+      .areas { padding: 60px 20px; }
+      .diferenciais { padding: 60px 20px; }
+      .contato { padding: 60px 20px; }
+    }
+    @media (max-width: 480px) {
+      .hero { padding: 60px 16px 40px; min-height: 100svh; }
+      .btn-primary { width: 100%; max-width: 320px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-lines"></div>
+  <span class="hero-badge">Advocacia Tributária</span>
+  <h1>Dr. <span>Paulo Silva</span></h1>
+  <p class="hero-subtitle">Ajudando você e sua empresa a pagar menos tributos</p>
+  <div class="hero-divider"></div>
+  <p class="hero-desc">Advocacia especializada em Direito Tributário e Execução Fiscal.</p>
+  <p class="hero-location">📍 Atendimento presencial em São Leopoldo/RS e online para todo o Brasil</p>
+  <a href="https://wa.me/5551981164724" class="btn-primary">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    Chamar no WhatsApp
+  </a>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <p>"Assessoria jurídica especializada para pessoas físicas e jurídicas em São Leopoldo e região — presencial e online."</p>
+</section>
+
+<!-- SOBRE -->
+<section class="sobre">
+  <div class="container">
+    <div class="sobre-inner">
+      <div class="sobre-img-wrap">
+        <img src="https://i.imgur.com/GuwtvBB.jpeg" alt="Dr. Paulo Silva">
+      </div>
+      <div class="sobre-text">
+        <span class="section-label">Sobre o Advogado</span>
+        <h2 class="section-title">Dr. Paulo <span class="accent">Silva</span></h2>
+        <div class="sobre-divider"></div>
+        <p>Bacharel em Direito e inscrito na OAB/RS sob o nº 137.283.</p>
+        <p>Analista Tributário da SEFAZ/RS.</p>
+        <p>Pós-graduando em Direito Tributário (PUC/RS).</p>
+        <p>Dr. Paulo Silva atua com rigor técnico e comprometimento na defesa dos interesses do contribuinte.</p>
+        <p>O escritório nasceu com um propósito claro: ajudar pessoas físicas e empresas a pagar apenas o que a lei determina — nem mais, nem menos. Com atuação em Direito Tributário e Execução Fiscal, cada caso é tratado com atenção individualizada e estratégia jurídica sólida.</p>
+        <p>O atendimento é realizado de forma presencial em São Leopoldo/RS ou online, com hora marcada, garantindo comodidade e acessibilidade para clientes em qualquer localidade.</p>
+        <div class="oab-badge">⚖️ &nbsp; OAB/RS nº 137.283</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÁREAS DE ATUAÇÃO -->
+<section class="areas">
+  <div class="container">
+    <div class="areas-header">
+      <span class="section-label">Especialidades</span>
+      <h2 class="section-title">Áreas de <span class="accent">Atuação</span></h2>
+    </div>
+    <div class="areas-grid">
+      <div class="area-card">
+        <span class="area-icon">📋</span>
+        <h3>Direito Tributário</h3>
+        <p>Assessoria jurídica estratégica para contribuintes que buscam pagar apenas o tributo correto.</p>
+        <ul class="area-list">
+          <li>Análise de lançamentos fiscais</li>
+          <li>Impugnações administrativas</li>
+          <li>Planejamento tributário preventivo</li>
+          <li>Defesa junto à Fazenda Pública federal, estadual e municipal</li>
+        </ul>
+      </div>
+      <div class="area-card">
+        <span class="area-icon">🏛️</span>
+        <h3>Execução Fiscal</h3>
+        <p>Defesa técnica em processos de execução fiscal movidos pela Fazenda Pública.</p>
+        <ul class="area-list">
+          <li>Análise de prescrição e decadência tributária</li>
+          <li>Embargos à execução</li>
+          <li>Exceção de pré-executividade</li>
+          <li>Negociação de dívidas fiscais</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="diferenciais">
+  <div class="container">
+    <div class="diferenciais-header">
+      <span class="section-label">Por que nos escolher</span>
+      <h2 class="section-title">Nossos <span class="accent">Diferenciais</span></h2>
+    </div>
+    <div class="diferenciais-grid">
+      <div class="diferencial-card">
+        <span class="diferencial-icon">🎯</span>
+        <h4>Atendimento Personalizado</h4>
+        <p>Cada cliente recebe atenção individualizada. Sem casos genéricos — apenas soluções sob medida para sua situação.</p>
+      </div>
+      <div class="diferencial-card">
+        <span class="diferencial-icon">🌐</span>
+        <h4>Atendimento Online</h4>
+        <p>Consultoria para todo o Brasil com hora marcada, via videoconferência — sem sair de casa ou do escritório.</p>
+      </div>
+      <div class="diferencial-card">
+        <span class="diferencial-icon">🛡️</span>
+        <h4>Defesa do Contribuinte</h4>
+        <p>Atuação focada em proteger seu patrimônio: você paga apenas o que a lei determina — nem mais, nem menos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="contato">
+  <div class="contato-inner">
+    <span class="section-label" style="color:var(--gold);">Entre em Contato</span>
+    <h2>Vamos <span>Conversar?</span></h2>
+    <div class="contato-divider"></div>
+    <p>Se você ou sua empresa enfrentam cobranças fiscais, dívidas com a Fazenda ou simplesmente querem pagar menos tributos dentro da lei, entre em contato.</p>
+    <p>O primeiro passo é uma conversa.</p>
+    <div class="contato-info">
+      <div class="contato-info-item"><span>📱</span><span>WhatsApp: (51) 98116-4724</span></div>
+      <div class="contato-info-item"><span>📍</span><span>São Leopoldo — RS</span></div>
+      <div class="contato-info-item"><span>⚖️</span><span>OAB/RS nº 137.283</span></div>
+    </div>
+    <a href="https://wa.me/5551981164724" class="btn-primary">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Chamar no WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- RODAPÉ -->
+<footer class="footer">
+  <p><strong>Dr. Paulo Silva</strong> — Advocacia Tributária &nbsp;|&nbsp; OAB/RS nº 137.283 &nbsp;|&nbsp; São Leopoldo/RS</p>
+  <p style="margin-top:6px;">© 2025 · Todos os direitos reservados</p>
+</footer>
+
+</body>
+</html>
