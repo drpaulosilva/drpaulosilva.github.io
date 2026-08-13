@@ -1,379 +1,302 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dr. Paulo Silva — Advocacia Tributária | Administrativo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --marfim:     #FAF8F5;
-      --areia:      #F0EDE7;
-      --ouro:       #C9A84C;
-      --ouro-light: #D4B85E;
-      --ouro-dark:  #A88B3D;
-      --carvao:     #2C3E50;
-      --cinza:      #7C8B9A;
-    }
-    body { font-family: 'DM Sans', sans-serif; color: var(--carvao); background: var(--marfim); overflow-x: hidden; }
-
-    /* ── HERO ── */
-    .hero {
-      background: linear-gradient(160deg, #1e2d3d 0%, #2C3E50 65%, #3a4f63 100%);
-      min-height: 100vh;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 80px 24px 60px; position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.10) 0%, transparent 65%);
-      pointer-events: none;
-    }
-    .hero-lines {
-      position: absolute; inset: 0;
-      background-image:
-        repeating-linear-gradient(90deg, rgba(201,168,76,0.04) 0px, rgba(201,168,76,0.04) 1px, transparent 1px, transparent 80px),
-        repeating-linear-gradient(0deg,  rgba(201,168,76,0.04) 0px, rgba(201,168,76,0.04) 1px, transparent 1px, transparent 80px);
-      pointer-events: none;
-    }
-    .hero-badge {
-      display: inline-block; border: 1px solid var(--ouro); color: var(--ouro);
-      font-size: 10px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase;
-      padding: 6px 22px; border-radius: 2px; margin-bottom: 36px; position: relative;
-    }
-    .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.6rem, 8vw, 5.5rem); font-weight: 700;
-      color: var(--marfim); line-height: 1.05; margin-bottom: 8px; position: relative;
-    }
-    .hero h1 span { color: var(--ouro); }
-    .hero-divider { width: 48px; height: 1px; background: var(--ouro); margin: 28px auto; }
-    .hero-subtitle {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.1rem, 3vw, 1.5rem); color: rgba(250,248,245,0.72);
-      font-style: italic; margin-bottom: 18px; position: relative; padding: 0 16px; font-weight: 400;
-    }
-    .hero-desc {
-      font-size: clamp(0.88rem, 2.5vw, 0.98rem); color: rgba(250,248,245,0.55);
-      max-width: 540px; line-height: 1.75; margin-bottom: 10px; position: relative;
-    }
-    .hero-location {
-      font-size: clamp(0.78rem, 2.5vw, 0.86rem); color: rgba(250,248,245,0.4);
-      margin-bottom: 52px; position: relative; letter-spacing: 0.3px;
-    }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--ouro); color: var(--carvao);
-      font-family: 'DM Sans', sans-serif; font-weight: 700;
-      font-size: clamp(0.8rem, 3vw, 0.88rem); letter-spacing: 1px; text-transform: uppercase;
-      padding: 15px 36px; border-radius: 2px; text-decoration: none;
-      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
-      border: none; cursor: pointer; justify-content: center;
-    }
-    .btn-primary:hover { background: var(--ouro-light); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,168,76,0.28); }
-    .btn-primary svg { flex-shrink: 0; }
-
-    /* ── INTRO ── */
-    .intro {
-      background: var(--areia); padding: 52px 24px; text-align: center;
-      border-top: 1px solid rgba(201,168,76,0.2); border-bottom: 1px solid rgba(201,168,76,0.2);
-    }
-    .intro p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.1rem, 3vw, 1.5rem); color: var(--carvao);
-      font-style: italic; max-width: 740px; margin: 0 auto; line-height: 1.7; font-weight: 400;
-    }
-
-    /* ── SOBRE ── */
-    .sobre { background: var(--marfim); padding: 110px 24px; }
-    .container { max-width: 1060px; margin: 0 auto; }
-    .sobre-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-    .sobre-img-wrap { position: relative; }
-    .sobre-img-wrap::before {
-      content: ''; position: absolute; top: -14px; left: -14px; right: 14px; bottom: 14px;
-      border: 1px solid var(--ouro); border-radius: 2px; z-index: 0;
-    }
-    .sobre-img-wrap img { width: 100%; border-radius: 2px; display: block; position: relative; z-index: 1; filter: sepia(8%) contrast(1.02); }
-    .section-label {
-      font-size: 10px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase;
-      color: var(--ouro); margin-bottom: 18px; display: block;
-    }
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 4vw, 3rem); font-weight: 700;
-      color: var(--carvao); line-height: 1.1; margin-bottom: 28px;
-    }
-    .section-title .accent { color: var(--ouro); }
-    .sobre-divider { width: 40px; height: 1px; background: var(--ouro); margin-bottom: 28px; }
-    .sobre-text p { color: var(--cinza); line-height: 1.9; font-size: clamp(0.87rem, 2.5vw, 0.94rem); margin-bottom: 14px; }
-    .oab-badge {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--areia); border: 1px solid rgba(201,168,76,0.3);
-      color: var(--carvao); padding: 12px 20px; border-radius: 2px;
-      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.5px; margin-top: 10px;
-    }
-
-    /* ── ÁREAS ── */
-    .areas { background: var(--carvao); padding: 110px 24px; position: relative; overflow: hidden; }
-    .areas::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 100% 50%, rgba(201,168,76,0.06) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .areas-header { text-align: center; margin-bottom: 64px; }
-    .areas-header .section-title { color: var(--marfim); }
-    .areas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    .areas-grid .area-card:last-child:nth-child(odd) { grid-column: 1 / -1; max-width: 560px; margin: 0 auto; width: 100%; }
-    .area-card {
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.18);
-      border-radius: 2px; padding: 44px 36px;
-      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-      position: relative; overflow: hidden;
-    }
-    .area-card::before {
-      content: ''; position: absolute; top: 0; left: 0;
-      width: 2px; height: 0; background: var(--ouro); transition: height 0.4s ease;
-    }
-    .area-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.25); }
-    .area-card:hover::before { height: 100%; }
-    .area-icon { font-size: 2rem; margin-bottom: 20px; display: block; }
-    .area-card h3 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.3rem, 3vw, 1.6rem); color: var(--ouro-light); margin-bottom: 14px; font-weight: 600; }
-    .area-card p { color: rgba(250,248,245,0.52); line-height: 1.8; font-size: 0.9rem; }
-    .area-list { list-style: none; margin-top: 20px; }
-    .area-list li { color: rgba(250,248,245,0.48); font-size: 0.85rem; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: flex-start; gap: 10px; }
-    .area-list li::before { content: '—'; color: var(--ouro); font-weight: 700; flex-shrink: 0; }
-
-    /* ── TESES ── */
-    .teses { background: var(--areia); padding: 110px 24px; }
-    .teses-header { text-align: center; margin-bottom: 56px; }
-    .teses-header p { margin-top: 16px; color: var(--cinza); font-size: 0.93rem; max-width: 560px; margin-left: auto; margin-right: auto; line-height: 1.8; }
-    .teses-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-    .tese-card { background: var(--marfim); border: 1px solid rgba(201,168,76,0.2); border-radius: 2px; overflow: hidden; box-shadow: 0 2px 12px rgba(44,62,80,0.05); transition: box-shadow 0.3s, transform 0.3s; cursor: pointer; }
-    .tese-card:hover { box-shadow: 0 8px 28px rgba(44,62,80,0.1); transform: translateY(-3px); }
-    .tese-toggle { width: 100%; background: none; border: none; padding: 28px 32px; display: flex; align-items: center; gap: 18px; cursor: pointer; text-align: left; }
-    .tese-icon { font-size: 1.6rem; flex-shrink: 0; }
-    .tese-titulo { font-family: 'Cormorant Garamond', serif; font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--carvao); font-weight: 600; flex: 1; line-height: 1.3; }
-    .tese-seta { color: var(--ouro); font-size: 1rem; transition: transform 0.3s ease; flex-shrink: 0; }
-    .tese-card.aberto .tese-seta { transform: rotate(180deg); }
-    .tese-descricao { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; padding: 0 32px; color: var(--cinza); font-size: 0.9rem; line-height: 1.85; }
-    .tese-card.aberto .tese-descricao { max-height: 320px; padding: 20px 32px 28px; border-top: 1px solid rgba(201,168,76,0.15); }
-    .tese-cta { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; color: var(--ouro-dark); font-weight: 600; font-size: 0.82rem; text-decoration: none; }
-    .tese-cta:hover { text-decoration: underline; }
-
-    /* ── DIFERENCIAIS ── */
-    .diferenciais { background: var(--marfim); padding: 110px 24px; }
-    .diferenciais-header { text-align: center; margin-bottom: 64px; }
-    .diferenciais-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .diferencial-card {
-      background: var(--areia); border-radius: 2px; padding: 44px 28px; text-align: center;
-      border-bottom: 2px solid transparent; transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
-      box-shadow: 0 2px 12px rgba(44,62,80,0.04);
-    }
-    .diferencial-card:hover { border-bottom-color: var(--ouro); box-shadow: 0 8px 28px rgba(44,62,80,0.08); transform: translateY(-4px); }
-    .diferencial-icon { font-size: 1.8rem; margin-bottom: 18px; display: block; }
-    .diferencial-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--carvao); margin-bottom: 12px; font-weight: 600; }
-    .diferencial-card p { font-size: 0.88rem; color: var(--cinza); line-height: 1.75; }
-
-    /* ── CONTATO ── */
-    .contato { background: var(--carvao); padding: 110px 24px; text-align: center; position: relative; overflow: hidden; }
-    .contato::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(201,168,76,0.07) 0%, transparent 65%); pointer-events: none; }
-    .contato-inner { position: relative; max-width: 660px; margin: 0 auto; }
-    .contato h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 5vw, 3.2rem); color: var(--marfim); margin-bottom: 20px; font-weight: 700; }
-    .contato h2 span { color: var(--ouro); }
-    .contato p { color: rgba(250,248,245,0.52); font-size: clamp(0.88rem, 2.5vw, 0.95rem); line-height: 1.85; margin-bottom: 12px; }
-    .contato-divider { width: 40px; height: 1px; background: var(--ouro); margin: 28px auto; }
-    .contato-info { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin: 36px 0; }
-    .contato-info-item { display: flex; align-items: center; gap: 10px; color: rgba(250,248,245,0.52); font-size: clamp(0.8rem, 2.5vw, 0.88rem); }
-    .contato-info-item span:first-child { color: var(--ouro); font-size: 1rem; }
-
-    /* ── RODAPÉ ── */
-    .footer { background: #1a2535; padding: 28px 24px; text-align: center; border-top: 1px solid rgba(201,168,76,0.15); }
-    .footer p { color: rgba(124,139,154,0.65); font-size: clamp(0.72rem, 2vw, 0.78rem); line-height: 1.6; }
-    .footer strong { color: var(--ouro); }
-
-    /* ── RESPONSIVO ── */
-    @media (max-width: 768px) {
-      .sobre-inner { grid-template-columns: 1fr; gap: 48px; }
-      .sobre-img-wrap { max-width: 300px; margin: 0 auto; }
-      .areas-grid { grid-template-columns: 1fr; }
-      .teses-grid { grid-template-columns: 1fr; }
-      .diferenciais-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
-      .contato-info { flex-direction: column; align-items: center; gap: 16px; }
-      .sobre, .areas, .teses, .diferenciais, .contato { padding: 72px 20px; }
-      .tese-toggle { padding: 22px 20px; }
-      .tese-descricao { padding: 0 20px; }
-      .tese-card.aberto .tese-descricao { padding: 16px 20px 24px; }
-    }
-    @media (max-width: 480px) {
-      .hero { padding: 60px 16px 40px; min-height: 100svh; }
-      .btn-primary { width: 100%; max-width: 320px; }
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dr. Paulo Silva | Advocacia Tributária e Administrativa</title>
+  <meta name="description" content="Advocacia tributária e administrativa em São Leopoldo/RS, com atendimento presencial e online para todo o Brasil.">
+  <meta name="theme-color" content="#071522">
+  <link rel="canonical" href="https://paulosilva.adv.br/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Dr. Paulo Silva | Advocacia Tributária e Administrativa">
+  <meta property="og:description" content="Atuação técnica e próxima para pessoas e empresas em questões tributárias e administrativas.">
+  <meta property="og:url" content="https://paulosilva.adv.br/">
+  <meta property="og:image" content="https://paulosilva.adv.br/foto%20perfil.jpg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LegalService",
+    "name": "Dr. Paulo Silva — Advocacia Tributária e Administrativa",
+    "url": "https://paulosilva.adv.br/",
+    "image": "https://paulosilva.adv.br/foto%20perfil.jpg",
+    "telephone": "+55 51 98064-8500",
+    "areaServed": "Brasil",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. João Corrêa, 991",
+      "addressLocality": "São Leopoldo",
+      "addressRegion": "RS",
+      "postalCode": "93010-265",
+      "addressCountry": "BR"
+    },
+    "sameAs": ["https://www.instagram.com/paulosilva.juridico/"]
+  }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-lines"></div>
-  <span class="hero-badge">Advocacia Tributária | Administrativo</span>
-  <h1>Dr. <span>Paulo Silva</span></h1>
-  <p class="hero-subtitle">Ajudando você e sua empresa a pagar menos tributos</p>
-  <div class="hero-divider"></div>
-  <p class="hero-desc">Advocacia especializada em Direito Tributário e Administrativo.</p>
-  <p class="hero-location">📍 Atendimento presencial em São Leopoldo/RS e online para todo o Brasil</p>
-  <a href="https://wa.me/5551980648500" class="btn-primary">
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    Chamar no WhatsApp
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="Dr. Paulo Silva — página inicial">
+        <span class="brand-mark" aria-hidden="true">PS</span>
+        <span class="brand-copy">
+          <span class="brand-name">Dr. Paulo Silva</span>
+          <span class="brand-role">Advocacia Tributária e Administrativa</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="Abrir menu" aria-controls="main-navigation" aria-expanded="false" data-nav-toggle>
+        <span class="nav-toggle-lines" aria-hidden="true"></span>
+      </button>
+
+      <nav class="primary-nav" id="main-navigation" aria-label="Navegação principal" data-nav data-open="false">
+        <ul class="nav-list">
+          <li><a class="nav-link" href="/" aria-current="page">Início</a></li>
+          <li><a class="nav-link" href="/sobre/">O advogado</a></li>
+          <li class="nav-dropdown" data-dropdown data-open="false">
+            <button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-controls="areas-menu" data-dropdown-toggle>
+              Atuação
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <ul class="nav-dropdown-panel" id="areas-menu">
+              <li><a href="/atuacao/">Visão geral</a></li>
+              <li><a href="/atuacao/direito-tributario/">Direito Tributário</a></li>
+              <li><a href="/atuacao/execucao-fiscal/">Execução Fiscal</a></li>
+              <li><a href="/atuacao/direito-administrativo/">Direito Administrativo</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link" href="/contato/">Contato</a></li>
+        </ul>
+        <a class="button button--gold header-cta" href="https://wa.me/5551980648500" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy" data-reveal>
+          <span class="eyebrow">Advocacia Tributária e Administrativa</span>
+          <h1 class="hero-title">Estratégia jurídica para <em>proteger</em> o que você construiu.</h1>
+          <p class="hero-lead">Atuação técnica e próxima para pessoas e empresas que precisam enfrentar cobranças fiscais, prevenir riscos e defender seus direitos perante o poder público.</p>
+          <div class="button-row">
+            <a class="button button--gold" href="https://wa.me/5551980648500" target="_blank" rel="noopener noreferrer">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.5 9.7 9.7 0 0 1-4-.9L3 21l1.7-4.5A8.4 8.4 0 1 1 21 11.5Z"/><path d="M8.5 8.5c.6 3 2 4.4 5 5"/></svg>
+              Agendar uma conversa
+            </a>
+            <a class="button button--outline" href="/atuacao/">Conhecer a atuação</a>
+          </div>
+          <ul class="hero-proof" aria-label="Informações de atendimento">
+            <li>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>
+              OAB/RS nº 137.283
+            </li>
+            <li>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-4.4 7-11a7 7 0 1 0-14 0c0 6.6 7 11 7 11Z"/><circle cx="12" cy="10" r="2"/></svg>
+              Presencial em São Leopoldo/RS
+            </li>
+            <li>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.4 3 14.6 0 18M12 3c-3 3.4-3 14.6 0 18"/></svg>
+              Atendimento online em todo o Brasil
+            </li>
+          </ul>
+        </div>
+
+        <div class="portrait-shell" data-reveal>
+          <span class="portrait-outline" aria-hidden="true"></span>
+          <div class="portrait-frame">
+            <img src="/foto%20perfil.jpg" alt="Retrato profissional do advogado Paulo Silva" width="1080" height="1080">
+          </div>
+          <div class="credential-card">
+            <span class="credential-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M5 7h14M7 7l-3 6h6L7 7Zm10 0-3 6h6l-3-6ZM8 21h8"/></svg>
+            </span>
+            <span class="credential-copy">
+              <strong>Atuação especializada</strong>
+              <span>Direito Tributário e Administrativo</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-bar" aria-label="Diferenciais do atendimento">
+      <div class="container trust-bar-inner">
+        <div class="trust-item">
+          <span class="trust-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 4 7v5c0 4.8 3.2 7.7 8 9 4.8-1.3 8-4.2 8-9V7l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg>
+          </span>
+          <span class="trust-copy"><strong>Rigor técnico</strong><span>Análise responsável de cada situação</span></span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 12h8M8 8h8M8 16h5"/><rect x="4" y="3" width="16" height="18" rx="2"/></svg>
+          </span>
+          <span class="trust-copy"><strong>Estratégia individual</strong><span>Orientação adequada ao contexto do cliente</span></span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 15a4 4 0 0 1-4 4H8l-4 2v-6a4 4 0 0 1-1-2.6V8a4 4 0 0 1 4-4h9a4 4 0 0 1 4 4v7Z"/></svg>
+          </span>
+          <span class="trust-copy"><strong>Comunicação clara</strong><span>Proximidade em todas as etapas</span></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--soft" aria-labelledby="areas-title">
+      <div class="container">
+        <div class="section-heading section-heading--center" data-reveal>
+          <span class="eyebrow">Áreas de atuação</span>
+          <h2 class="display-title" id="areas-title">Orientação jurídica para decisões que exigem segurança.</h2>
+          <p class="section-lead">Conheça as frentes de atuação e acesse informações específicas sobre cada serviço.</p>
+        </div>
+
+        <div class="areas-grid">
+          <a class="area-card" href="/atuacao/direito-tributario/" data-reveal>
+            <span class="area-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 20h16M6 17h12M8 17V9m4 8V9m4 8V9M5 9h14L12 4 5 9Z"/></svg>
+            </span>
+            <h3>Direito Tributário</h3>
+            <p>Prevenção e enfrentamento de cobranças indevidas, com orientação para pessoas físicas e empresas.</p>
+            <span class="text-link">Conhecer esta área <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+          </a>
+
+          <a class="area-card" href="/atuacao/execucao-fiscal/" data-reveal>
+            <span class="area-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 3h10v18H7zM10 7h4M10 11h4M10 15h2"/><path d="M4 6h3M17 6h3M4 18h3M17 18h3"/></svg>
+            </span>
+            <h3>Execução Fiscal</h3>
+            <p>Defesa técnica em processos de cobrança promovidos pelas Fazendas Públicas federal, estadual ou municipal.</p>
+            <span class="text-link">Conhecer esta área <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+          </a>
+
+          <a class="area-card" href="/atuacao/direito-administrativo/" data-reveal>
+            <span class="area-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v18M5 7h14M7 7l-3 6h6L7 7Zm10 0-3 6h6l-3-6ZM8 21h8"/></svg>
+            </span>
+            <h3>Direito Administrativo</h3>
+            <p>Defesa de cidadãos, servidores e empresas em suas relações com órgãos e entidades do poder público.</p>
+            <span class="text-link">Conhecer esta área <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="about-title">
+      <div class="container split-layout">
+        <div class="image-panel" data-reveal>
+          <img src="/foto%20perfil.jpg" alt="Dr. Paulo Silva em retrato profissional" width="1080" height="1080" loading="lazy">
+          <div class="image-note">
+            <strong>Dr. Paulo Silva</strong>
+            <span>Advogado inscrito na OAB/RS sob o nº 137.283</span>
+          </div>
+        </div>
+
+        <div class="prose-copy" data-reveal>
+          <span class="eyebrow">O advogado</span>
+          <h2 id="about-title">Técnica, escuta e estratégia em cada caso.</h2>
+          <p>Paulo Silva atua na defesa dos interesses do contribuinte e nas relações entre cidadãos, empresas e a administração pública. O trabalho parte de uma análise cuidadosa dos fatos, dos documentos e dos objetivos de cada cliente.</p>
+          <ul class="credential-list">
+            <li>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>
+              Bacharel em Direito e inscrito na OAB/RS
+            </li>
+            <li>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>
+              Analista Tributário da SEFAZ/RS
+            </li>
+            <li>
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg>
+              Pós-graduando em Direito Tributário pela PUCRS
+            </li>
+          </ul>
+          <a class="text-link" href="/sobre/">Conheça a trajetória profissional <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark" aria-labelledby="process-title">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <span class="eyebrow">Como funciona</span>
+          <h2 class="display-title" id="process-title">Um atendimento direto, do primeiro contato à definição da estratégia.</h2>
+        </div>
+        <div class="process-grid">
+          <article class="process-card" data-reveal>
+            <h3>Conversa inicial</h3>
+            <p>Entendimento da situação, das dúvidas e do resultado que você busca.</p>
+          </article>
+          <article class="process-card" data-reveal>
+            <h3>Análise técnica</h3>
+            <p>Exame dos documentos e das alternativas jurídicas aplicáveis ao caso.</p>
+          </article>
+          <article class="process-card" data-reveal>
+            <h3>Plano de atuação</h3>
+            <p>Apresentação dos próximos passos com clareza sobre possibilidades e riscos.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-panel" data-reveal>
+          <div class="cta-copy">
+            <span class="eyebrow">Atendimento presencial e online</span>
+            <h2 id="cta-title">Sua situação merece uma análise cuidadosa.</h2>
+            <p>Entre em contato para explicar o contexto e entender como a orientação jurídica pode ajudar.</p>
+          </div>
+          <a class="button button--gold" href="https://wa.me/5551980648500" target="_blank" rel="noopener noreferrer">Conversar pelo WhatsApp</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <div class="footer-brand">
+        <a class="brand" href="/" aria-label="Dr. Paulo Silva — página inicial">
+          <span class="brand-mark" aria-hidden="true">PS</span>
+          <span class="brand-copy"><span class="brand-name">Dr. Paulo Silva</span><span class="brand-role">Advocacia Tributária e Administrativa</span></span>
+        </a>
+        <p>Atuação técnica em Direito Tributário, Execução Fiscal e Direito Administrativo, com atendimento presencial em São Leopoldo/RS e online para todo o Brasil.</p>
+      </div>
+      <div>
+        <h2 class="footer-title">Navegação</h2>
+        <ul class="footer-links">
+          <li><a href="/">Início</a></li>
+          <li><a href="/sobre/">O advogado</a></li>
+          <li><a href="/atuacao/">Áreas de atuação</a></li>
+          <li><a href="/contato/">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-title">Contato</h2>
+        <ul class="footer-links">
+          <li><a href="https://wa.me/5551980648500" target="_blank" rel="noopener noreferrer">(51) 98064-8500</a></li>
+          <li><a href="https://www.instagram.com/paulosilva.juridico/" target="_blank" rel="noopener noreferrer">@paulosilva.juridico</a></li>
+          <li><span>São Leopoldo/RS</span></li>
+          <li><span>OAB/RS nº 137.283</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span data-year>2026</span> Dr. Paulo Silva. Todos os direitos reservados.</span>
+      <span>Conteúdo informativo. A análise jurídica depende das particularidades de cada caso.</span>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/5551980648500" target="_blank" rel="noopener noreferrer" aria-label="Conversar pelo WhatsApp">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.5 9.7 9.7 0 0 1-4-.9L3 21l1.7-4.5A8.4 8.4 0 1 1 21 11.5Z"/><path d="M8.5 8.5c.6 3 2 4.4 5 5"/></svg>
   </a>
-</section>
 
-<!-- INTRO -->
-<section class="intro">
-  <p>"Assessoria jurídica especializada para pessoas físicas e jurídicas em São Leopoldo e região — presencial e online."</p>
-</section>
-
-<!-- SOBRE -->
-<section class="sobre">
-  <div class="container">
-    <div class="sobre-inner">
-      <div class="sobre-img-wrap">
-        <img src="foto%20perfil.jpg" alt="Dr. Paulo Silva">
-      </div>
-      <div class="sobre-text">
-        <span class="section-label">Sobre o Advogado</span>
-        <h2 class="section-title">Dr. Paulo <span class="accent">Silva</span></h2>
-        <div class="sobre-divider"></div>
-        <p>Bacharel em Direito e inscrito na OAB/RS sob o nº 137.283.</p>
-        <p>Analista Tributário da SEFAZ/RS.</p>
-        <p>Pós-graduando em Direito Tributário (PUC/RS).</p>
-        <p>Dr. Paulo Silva atua com rigor técnico e comprometimento na defesa dos interesses do contribuinte.</p>
-        <p>O escritório nasceu com um propósito claro: ajudar pessoas físicas e empresas a identificar cobranças indevidas — e recuperar ou eliminar tributos que nunca deveriam ter sido pagos. Com atuação em Direito Tributário e Execução Fiscal, cada caso é tratado com atenção individualizada e estratégia jurídica sólida.</p>
-        <p>O atendimento é realizado de forma presencial em São Leopoldo/RS ou online, com hora marcada, garantindo comodidade e acessibilidade para clientes em qualquer localidade.</p>
-        <div class="oab-badge">⚖️ &nbsp; OAB/RS nº 137.283</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ÁREAS DE ATUAÇÃO -->
-<section class="areas">
-  <div class="container">
-    <div class="areas-header">
-      <span class="section-label" style="color:var(--ouro);">Especialidades</span>
-      <h2 class="section-title">Áreas de <span class="accent">Atuação</span></h2>
-    </div>
-    <div class="areas-grid">
-      <div class="area-card">
-        <span class="area-icon">📋</span>
-        <h3>Direito Tributário</h3>
-        <p>Assessoria jurídica estratégica para contribuintes que buscam pagar apenas o tributo correto.</p>
-        <ul class="area-list">
-          <li>Análise de cobranças fiscais indevidas</li>
-          <li>Recursos e impugnações administrativas</li>
-          <li>Planejamento tributário preventivo</li>
-          <li>Defesa junto à Fazenda Pública federal, estadual e municipal</li>
-        </ul>
-      </div>
-      <div class="area-card">
-        <span class="area-icon">🏛️</span>
-        <h3>Execução Fiscal</h3>
-        <p>Defesa técnica em processos de execução fiscal movidos pela Fazenda Pública.</p>
-        <ul class="area-list">
-          <li>Verificação de prescrição e decadência de dívidas</li>
-          <li>Embargos à execução fiscal</li>
-          <li>Exceção de pré-executividade</li>
-          <li>Negociação e parcelamento de dívidas fiscais</li>
-        </ul>
-      </div>
-      <div class="area-card">
-        <span class="area-icon">⚖️</span>
-        <h3>Direito Administrativo</h3>
-        <p>Atuação na defesa de cidadãos e empresas em suas relações com o poder público.</p>
-        <ul class="area-list">
-          <li>Ações judiciais em concursos públicos</li>
-          <li>Licitações e contratos com o poder público</li>
-          <li>Defesa em processos de improbidade administrativa</li>
-          <li>Recursos em processos administrativos</li>
-          <li>Direitos e defesa de servidores públicos</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DIFERENCIAIS -->
-<section class="diferenciais">
-  <div class="container">
-    <div class="diferenciais-header">
-      <span class="section-label">Por que nos escolher</span>
-      <h2 class="section-title">Nossos <span class="accent">Diferenciais</span></h2>
-    </div>
-    <div class="diferenciais-grid">
-      <div class="diferencial-card">
-        <span class="diferencial-icon">🎯</span>
-        <h4>Atendimento Personalizado</h4>
-        <p>Cada cliente recebe atenção individualizada. Sem casos genéricos — apenas soluções sob medida para sua situação.</p>
-      </div>
-      <div class="diferencial-card">
-        <span class="diferencial-icon">🌐</span>
-        <h4>Atendimento Online</h4>
-        <p>Consultoria para todo o Brasil com hora marcada, via videoconferência — sem sair de casa ou do escritório.</p>
-      </div>
-      <div class="diferencial-card">
-        <span class="diferencial-icon">🛡️</span>
-        <h4>Defesa do Contribuinte</h4>
-        <p>Atuação focada em proteger seu patrimônio: você paga apenas o que a lei determina — nem mais, nem menos.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTATO -->
-<section class="contato">
-  <div class="contato-inner">
-    <span class="section-label" style="color:var(--ouro);">Entre em Contato</span>
-    <h2>Vamos <span>Conversar?</span></h2>
-    <div class="contato-divider"></div>
-    <p>Se você ou sua empresa enfrentam cobranças fiscais, dívidas com a Fazenda ou simplesmente querem pagar menos tributos dentro da lei, entre em contato.</p>
-    <p>O primeiro passo é uma conversa.</p>
-    <div class="contato-info">
-      <div class="contato-info-item"><span>📱</span><span>WhatsApp: (51) 98064-8500</span></div>
-      <div class="contato-info-item">
-        <span>📸</span>
-        <a href="https://www.instagram.com/paulosilva.juridico/" target="_blank" rel="noopener noreferrer" style="color:rgba(250,248,245,0.52);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color 0.2s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(250,248,245,0.52)'">
-          @paulosilva.juridico
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:0.7;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        </a>
-      </div>
-      <div class="contato-info-item">
-        <span>📍</span>
-        <a href="https://www.google.com/maps/search/?api=1&query=Av.+Jo%C3%A3o+Corr%C3%AAa,+991,+Centro,+S%C3%A3o+Leopoldo,+RS,+93010-265" target="_blank" rel="noopener noreferrer" style="color:rgba(250,248,245,0.52);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color 0.2s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(250,248,245,0.52)'">
-          Av. João Corrêa, 991 — Centro, São Leopoldo/RS · CEP 93010-265
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:0.7;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        </a>
-      </div>
-      <div class="contato-info-item"><span>⚖️</span><span>OAB/RS nº 137.283</span></div>
-    </div>
-    <a href="https://wa.me/5551980648500" class="btn-primary">
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Chamar no WhatsApp
-    </a>
-  </div>
-</section>
-
-<!-- RODAPÉ -->
-<footer class="footer">
-  <p><strong>Dr. Paulo Silva</strong> — Advocacia Tributária | Administrativo &nbsp;|&nbsp; OAB/RS nº 137.283 &nbsp;|&nbsp; São Leopoldo/RS</p>
-  <p style="margin-top:6px;">© 2026 · Todos os direitos reservados</p>
-</footer>
-
-<script>
-function toggleTese(card) {
-  const jaAberto = card.classList.contains('aberto');
-  document.querySelectorAll('.tese-card').forEach(c => c.classList.remove('aberto'));
-  if (!jaAberto) card.classList.add('aberto');
-}
-</script>
+  <script src="/assets/js/main.js" defer></script>
 </body>
 </html>
